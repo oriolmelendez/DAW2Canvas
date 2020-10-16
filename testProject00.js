@@ -1,24 +1,24 @@
 
 function test(){
-    let hola = document.getElementById("funcio").value;
-    console.log(hola);
+    let operacio = document.getElementById("funcio").value;
+    console.log(operacio);
     let checker = 0;
     let insertion = "Math.";
-    for(let i = 0; i < hola.length; i++){
-        let x = hola.charCodeAt(i);
+    for(let i = 0; i < operacio.length; i++){
+        let x = operacio.charCodeAt(i);
         console.log(x);
         if (x >= 97 && x <= 122){
             checker++;           
         }else if(checker != 0){
-            hola = [hola.slice(0, i-checker), insertion, hola.slice(i-checker)].join('');
+            operacio = [operacio.slice(0, i-checker), insertion, operacio.slice(i-checker)].join('');
             i+=5;
             checker = 0;
         }
-        console.log(hola);
+        console.log(operacio);
     }
-    console.log(hola);
+    console.log(operacio);
 
-    let result = eval(hola);
-    document.getElementById("testeo").value = hola;
+    let result = eval(operacio);
+    document.getElementById("testeo").value = operacio;
     document.getElementById("add").value = result;
 }
