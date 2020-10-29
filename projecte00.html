@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+    <head>
+        <title>DAW2</title>
+        <meta charset="utf-8" />
+        <meta name="author" content="oriolmelendez@gmail.com" />
+        <script type="text/javascript" src="testProject00.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+    </head>
+
+    <body>
+
+        <form id="inputFunc">
+            <p>Funció(x):</p>
+            <input id="funcio" type="text" value="sin(x)">
+            <input type="button" onclick="calcular();" value="Afegeix"/>
+        </form>
+
+        <div id="menu">
+            <p id="Color">Modificació color</p>
+            <select id="colors" onchange="CanviColor(this.value)">
+                <option value="orange">Taronja</option>
+                <option value="red">Vermell</option>
+                <option value="green">Verd</option>
+                <option value="blue">Blau</option>
+            </select>
+
+            <p id="Gruix">Modificació gruix</p>
+            <input id="ValorG" type="range" min="1" max="30" value="3" onchange="gruix(this.value)">
+
+            <p id="Tipus">Modificació gruix línea</p>
+            <select id="tipusL" onchange="tipus(this.value)">
+                <option value="continua">Continua</option>
+                <option value="discontinua">Discontinua</option>
+                <option value="rallapunt">Ralla - punt</option>
+                <option value="punts">Punts</option>
+            </select>
+
+        </div>
+        <div id="canvas">
+            <canvas id="eixos" width="1200" height="500"></canvas>
+            <canvas id="pfuncio" width="1200" height="500" z-index=0 style="position: absolute;"></canvas>
+        </div>
+        
+    </body>
+
+</html>
