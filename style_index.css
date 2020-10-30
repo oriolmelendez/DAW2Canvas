@@ -1,0 +1,38 @@
+body{
+    background-color: #e6e6e6;
+}
+
+#titol{
+    margin-left: 34%;
+}
+
+#botons{
+    margin-top: 2%;
+    margin-left: 38%;
+}
+
+#back,#play,#front,#pause{
+    width: 76px;
+    height: 56px;
+}
+
+#video{
+    margin-top: -50px;
+    margin-left: 26%;
+}
+
+#descripcio{
+    margin-left: 40%;
+    font-size: 15px;
+    margin-top: 2%;
+}
+
+#funcions{
+    margin-left: 43%;
+    margin-top: 2%;
+    width: 150px;
+    height: 30px;
+    background-color: #f44336;
+    border:none;
+    color:white;
+}
