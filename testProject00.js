@@ -65,6 +65,9 @@ function pintarf(){
     context.stroke();
 }
 
+//####### Modificacions estetiques funcio #######
+
+//Canvi color
 function CanviColor(color){
 
     var canvas = document.getElementById('pfuncio');
@@ -74,6 +77,7 @@ function CanviColor(color){
     context.stroke();
 }
 
+//Canvi gruix
 function gruix(vgruix){
 
     var canvas = document.getElementById('pfuncio');
@@ -85,6 +89,7 @@ function gruix(vgruix){
     context.stroke();
 }
 
+// Funcions canvi tipus linea
 function tipus(tipusL){
     console.log(tipusL);
 
@@ -110,7 +115,6 @@ function tipus(tipusL){
 
 }
 
-// FUNCIONS CANVI TIPUS LINEA
 
 function funcioDis(){
 
@@ -162,4 +166,24 @@ function funcioP(){
     context.lineTo(950, 260);
     context.stroke();
 
+}
+
+function neteja(){
+    var canvas = document.getElementById('pfuncio');
+    var context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+//Zoom
+
+function zoom(z){
+    var canvas = document.getElementById('eixos');
+    var context = canvas.getContext('2d');
+
+    console.log(z);
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.scale(z,z);
+   
 }

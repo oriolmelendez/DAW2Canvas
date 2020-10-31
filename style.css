@@ -19,8 +19,12 @@
 }
 
 #Z{
-    margin-left: 45%;
-    margin-bottom: 3%;
+    margin-left: 43%;
+    margin-top: 27%;
+}
+
+#zoom{
+    margin-bottom: -5px;
 }
 
 #eixos{
@@ -54,4 +58,11 @@ select{
 #ValorG{
     margin-left: 81%;
     width: 120px;
+}
+
+#esborrar{
+    margin-top: 45%;
+    margin-left: 81%;
+    width: 100px;
+    height: 40px;
 }
