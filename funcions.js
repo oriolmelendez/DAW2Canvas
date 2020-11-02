@@ -5,6 +5,7 @@ window.onload = function eixos() {
     document.getElementById("desar").addEventListener('click',desar,true);
 
     inici(canvas);
+    pintarf();
 }
 
 function calcular() {
@@ -30,7 +31,7 @@ function calcular() {
             checker++;
         }
 
-        if (x == 120) {
+        if (x == 120 || x == 121) {
             continue;
         }
         if (x >= 97 && x <= 122) {
@@ -53,41 +54,49 @@ function calcular() {
 
         let x = operacio.charCodeAt(i);
 
-        if (x == 120) {
+        if (x == 120 || x == 121) {
             arrayX.push(i);
         }
-       
+
     }
 
-
-    //console.log("HOLA");
-    //console.log(operacio);
-    //console.log(arrayX);
+    console.log("HOLA");
+    console.log(operacio);
+    console.log(arrayX);
 
     // este for recorrera los valores para la funcion y usara el array donde esta la X para sustituir los valores
 
     let totalValues = []
     let valorF = 5;
-    let ValorI = -5;
 
     console.log("HERE0");
     console.log(operacio);
 
-    let reBrackets = / *\([[a-zA-Z]+]*\) */g
+    let reBrackets = / *\([[a-zA-Z-0.-9]+]*\) */g
 
-    for (; ValorI < valorF; ValorI += 0.5) {
+    for (let ValorI = -5; ValorI < valorF;) {
 
-        arrayX.forEach(element => {
-            operacio = operacio.replace(reBrackets, "(" + ValorI + ")");
-        });
+
+        operacio = operacio.replace(reBrackets, "(" + ValorI.toString() + ")");
+
 
         console.log("HERE");
         console.log(operacio);
-
-        totalValues.push(ValorI,eval(operacio));
-        //let punts = eval(operacio);
+        console.log(ValorI);
+        ValorI = (ValorI * 1) + 0.5;
+        totalValues.push(eval(operacio));
     }
+
+    let listOfText = [];
+
+    listOfText = operacio.match(reBrackets);
+
     return totalValues;
+
+
+    //document.getElementById("testeo").value = operacio;
+    //document.getElementById("add").value = totalValues;
+    //document.getElementById("entrepar").value = listOfText;
 }
 
 function pintarf(){
@@ -96,7 +105,7 @@ function pintarf(){
     var context = canvas.getContext('2d');
 
     context.beginPath();
-    //let punts = calcular();
+    let punts = calcular();
     ////linea prova
     //for(let i = 0; i < punts[0].length; i++){
     //    if(i == 0){
@@ -106,8 +115,8 @@ function pintarf(){
     //    }
     //}
 
-    context.moveTo(550, 260);
-    context.lineTo(950, 260);
+    //context.moveTo(550, 260);
+    //context.lineTo(950, 260);
 
     context.strokeStyle="black";
     context.stroke();
