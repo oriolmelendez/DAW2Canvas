@@ -1,24 +1,36 @@
+@import url('https://fonts.google.com/specimen/Bebas+Neue#standard-styles');
+
+h1{
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: 30px;
+}
+
+button{
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: 14px;
+}
+
 body{
     background-color: #e6e6e6;
 }
 
 #titol{
-    margin-left: 34%;
+    margin-top: 3%;
+    margin-left: 35%;
 }
 
 #botons{
-    margin-top: 2%;
-    margin-left: 38%;
+    margin-left: 39%;
 }
 
-#back,#play,#front,#pause{
+#back,#play,#forward,#pause,#mute{
     width: 76px;
     height: 56px;
 }
 
 #video{
     margin-top: -50px;
-    margin-left: 26%;
+    margin-left: 28%;
 }
 
 #descripcio{
@@ -28,7 +40,7 @@ body{
 }
 
 #funcions{
-    margin-left: 43%;
+    margin-left: 45%;
     margin-top: 2%;
     width: 150px;
     height: 30px;

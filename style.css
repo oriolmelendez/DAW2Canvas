@@ -1,11 +1,11 @@
 #Canvas{
-    margin-top: 1%;
+    margin-top: -100px;
 }
 
 #menu{
     width: 220px;
     position: absolute;
-    margin-left: 70%;
+    margin-left: 66%;
 }
 
 #funcio{
@@ -19,8 +19,8 @@
 }
 
 #Z{
-    margin-left: 43%;
-    margin-top: 27%;
+    margin-left: 42%;
+    margin-top: -50px;
 }
 
 #zoom{
@@ -34,7 +34,7 @@
 
 #exemple{
     z-index: 1;
-    position: absolute;
+    
 }
 
 select{
@@ -65,4 +65,17 @@ select{
     margin-left: 81%;
     width: 100px;
     height: 40px;
+}
+
+
+#menu2{
+    width: 300px;
+    height: 100px;
+}
+
+#desar{
+    width: 180px;
+    height: 40px;
+    margin-top: 35%;
+    margin-left: 65%;
 }
