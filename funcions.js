@@ -115,8 +115,8 @@ function pintarf(){
     //    }
     //}
 
-    //context.moveTo(550, 260);
-    //context.lineTo(950, 260);
+    context.moveTo(550, 260);
+    context.lineTo(950, 260);
 
     context.strokeStyle="black";
     context.stroke();
