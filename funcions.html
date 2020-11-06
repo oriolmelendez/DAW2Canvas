@@ -38,20 +38,35 @@
                 <option value="punts">Punts</option>
             </select>
 
+            <p id="Fons">Canvi fons</p>
+            <select id="fonsC" onchange="fons(this.value)">
+                <option value="nf">Sense fons</option>
+                <option value="f1">Foto 1</option>
+                <option value="f2">Foto 2</option>
+                <option value="f3">Foto 3</option>
+            </select>
+
+            <p id="efecteF">Efecte foto</p>
+            <select id="efecte" onchange="bitmap(this.value)">
+                <option value="color">Color</option>
+                <option value="blancnegre">Blanc i negre</option>
+                <option value="negatiu">Negatiu</option>
+                <option value="verd">Verd</option>
+
+            </select>
+
             <input id="esborrar" type="button" onclick="neteja()" value="Esborra tot"/>
-            <button id="desar">Desa l'imatge</button>
+            
             
         </div>
 
-        <div id="canvas">
-            <canvas id="eixos" width="1200" height="500"></canvas>
-            <canvas id="pfuncio" width="1200" height="500" z-index=0 ></canvas>
-        </div>
+        <!-- <canvas id="eixos" width="1200" height="500"></canvas> -->
+        <!-- <canvas id="pfuncio" width="1200" height="500" z-index=0 ></canvas> -->
+        <canvas id="eixos" width="500" height="500"></canvas>
+        <canvas id="pfuncio" width="500" height="500" z-index=0 ></canvas>
 
-        
 
-        <div id="Z" style="position: absolute;">Zoom:<input id="zoom" type="range" min="1200" max="2200" value="1700" onchange=""></div>
-        
+        <button id="desar">Desa l'imatge</button>
     </body>
 
 </html>

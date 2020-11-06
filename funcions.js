@@ -5,100 +5,34 @@ window.onload = function eixos() {
     document.getElementById("desar").addEventListener('click',desar,true);
 
     inici(canvas);
-    pintarf();
 }
 
 function calcular() {
-    let operacio = document.getElementById("funcio").value;
-    console.log(operacio);
-    let checker = 0;
-    let insertion = "Math.";
-    let isBetween = false;
-    arrayX = []
+    let operacio = document.getElementById("funcio").value.toString();
+    
+    let trigonometriques = ["sin", "cos", "tan","sqrt"];
 
-    if (operacio.includes('=')) {
-        let n = operacio.indexOf('=');
-        //backup per si el necessitem
-        let operacioOrg = operacio;
-        operacio = operacio.substr(n + 1, operacio.length);
+    for(let t=0; t < trigonometriques.length; t++){
+       
+        if(operacio.includes(trigonometriques[t])){
+
+            operacio = operacio.replace(trigonometriques[t],"Math." + trigonometriques[t]);
+        }
+        
     }
-
-    for (let i = 0; i < operacio.length; i++) {
-        let x = operacio.charCodeAt(i);
-
-        if (x == 40 || x == 41) {
-            isBetween = isBetween ? false : true;
-            checker++;
-        }
-
-        if (x == 120 || x == 121) {
-            continue;
-        }
-        if (x >= 97 && x <= 122) {
-            checker++;
-        } else if (checker != 0 && !isBetween) {
-            operacio = [operacio.slice(0, i - checker), insertion, operacio.slice(i - checker)].join('');
-            i += insertion.length;
-            checker = 0;
-        }
-
-        console.log(checker);
-
-        console.log(isBetween);
-
-        console.log(operacio);
-    }
-
-
-    for (let i = 0; i < operacio.length; i++) {
-
-        let x = operacio.charCodeAt(i);
-
-        if (x == 120 || x == 121) {
-            arrayX.push(i);
-        }
-
-    }
-
-    console.log("HOLA");
-    console.log(operacio);
-    console.log(arrayX);
-
-    // este for recorrera los valores para la funcion y usara el array donde esta la X para sustituir los valores
 
     let totalValues = []
-    let valorF = 5;
-
-    console.log("HERE0");
-    console.log(operacio);
-
-    let reBrackets = / *\([[a-zA-Z-0.-9]+]*\) */g
-
-    for (let ValorI = -5; ValorI < valorF;) {
-
-
-        operacio = operacio.replace(reBrackets, "(" + ValorI.toString() + ")");
-
-
-        console.log("HERE");
-        console.log(operacio);
-        console.log(ValorI);
-        ValorI = (ValorI * 1) + 0.5;
+   
+    for (let x = -5; x < 5.01; x += 0.01) {
+        totalValues.push(x);
         totalValues.push(eval(operacio));
+        
     }
 
-    let listOfText = [];
-
-    listOfText = operacio.match(reBrackets);
-
     return totalValues;
-
-
-    //document.getElementById("testeo").value = operacio;
-    //document.getElementById("add").value = totalValues;
-    //document.getElementById("entrepar").value = listOfText;
 }
 
+//Pin
 function pintarf(){
 
     var canvas = document.getElementById('pfuncio');
@@ -106,17 +40,14 @@ function pintarf(){
 
     context.beginPath();
     let punts = calcular();
-    ////linea prova
-    //for(let i = 0; i < punts[0].length; i++){
-    //    if(i == 0){
-    //        context.moveTo(punts[0][i],punts[1][i]);
-    //    }else{
-    //        context.lineTo(punts[0][i], punts[1][i]);
-    //    }
-    //}
-
-    context.moveTo(550, 260);
-    context.lineTo(950, 260);
+    console.log(punts);
+    
+    context.moveTo(punts[0]*50 + canvas.width/2, canvas.height/2 - punts[1]*50);
+    
+    for(let i = 2; i < punts.length; i+=2){
+        
+        context.lineTo(punts[i]*50 + canvas.width/2, canvas.height/2 - punts[i+1]*50); 
+    }
 
     context.strokeStyle="black";
     context.stroke();
@@ -153,26 +84,26 @@ function tipus(tipusL){
     switch(tipusL){
 
         case 'discontinua':
-            funcioDis();
+            funcioDiscontinua();
             break;
 
         case 'continua':
-            funcioCont();
+            funcioContinua();
             break;
 
         case 'rallapunt':
-            funcioRP();
+            funcioRallaPunt();
             break;
         
         case 'punts':
-            funcioP();
+            funcioPunts();
             break;
 
     }
 
 }
 
-function funcioDis(){
+function funcioDiscontinua(){
 
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
@@ -180,55 +111,62 @@ function funcioDis(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.setLineDash([4, 14]);
     context.beginPath();
-    context.moveTo(550, 260);
-    context.lineTo(950, 260);
-    context.stroke();
+    let img = document.getElementById("fonsC").value;
+    fons(img);
+    pintarf();
+    
 }
 
-function funcioCont(){
+function funcioContinua(){
 
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
+    let img = document.getElementById("fonsC").value;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.setLineDash([]);
     context.beginPath();
-    context.moveTo(550, 260);
-    context.lineTo(950, 260);
-    context.stroke();
+    fons(img);
+    pintarf();
 }
 
-function funcioRP(){
+function funcioRallaPunt(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
-
+    let img = document.getElementById("fonsC").value;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.setLineDash([4, 14, 18]);
     context.beginPath();
-    context.moveTo(550, 260);
-    context.lineTo(950, 260);
-    context.stroke();
+    fons(img);
+    pintarf();
 }
 
-function funcioP(){
+function funcioPunts(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
+    let img = document.getElementById("fonsC").value;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.setLineDash([1,1]);
+    context.setLineDash([2,5]);
     context.beginPath();
-    context.moveTo(550, 260);
-    context.lineTo(950, 260);
-    context.stroke();
+    fons(img);
+    pintarf();
 
 }
 
+//Neteja pantalla
 function neteja(){
     var canvas = document.getElementById('pfuncio');
+    var canvasE = document.getElementById('eixos');
+    
     var context = canvas.getContext('2d');
+    var contextE = canvasE.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
+    contextE.clearRect(0, 0, canvas.width, canvas.height);
+
+    inici(canvasE);
 }
 
 //Guardar canvas
@@ -247,32 +185,154 @@ function desar(){
     });
 }
 
-//Zoom
-
-function zoom(z){
-    var canvas = document.getElementById('eixos');
-    var context = canvas.getContext('2d');
-
-    console.log(z);
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.scale(z,z);
-   
-}
-
 //Pintar canvas inicial
 function inici(canvas){
 
     this.canvas = canvas;
     var context = canvas.getContext('2d');
+    context.setLineDash([]);
 
     //Posicio(x),Posicio(y),(ample),(alt)
     context.beginPath();
-    context.strokeRect (500,50,500,300);
+    context.strokeRect (0,0,500,500);
     context.beginPath();
-    context.moveTo(750, 50);
-    context.lineTo(750, 350);
-    context.moveTo(500, 200);
-    context.lineTo(1000, 200);
+    context.moveTo(250, 0);
+    context.lineTo(250, 500);
+    context.moveTo(0, 250);
+    context.lineTo(500, 250);
     context.stroke();
+}
+
+//Posar imatge de fons
+function fons(img){
+    var canvas = document.getElementById('pfuncio');
+    var context = canvas.getContext('2d');
+
+    let imatge = new Image();
+    
+    switch(img){
+
+        case 'f1':
+            console.log("foto1");
+            imatge.src = "img/fons1.jpg";
+            break;
+        
+        case 'f2':
+            console.log("foto2");
+            imatge.src = "img/fons2.jpg";
+            break;
+        
+        case 'f3':
+            console.log("foto3");
+            imatge.src = "img/fons3.jpg";
+            break;
+        
+        case 'nf':
+            imatge.src = "img/sense_fons.jpg";
+            break;
+    }
+    
+    imatge.onload = function(){
+        context.drawImage(imatge,0,0);
+        pintarf();
+        inici(canvas);
+    }
+
+
+}
+
+// ####### Modificacions estètiques sobre l'imatge #######
+
+function bitmap(modificacio){
+
+    switch(modificacio){
+
+        case 'negatiu':
+            ferNegatiu();
+            break;
+
+        case 'blancnegre':
+            BlancNegre();
+            break;
+        
+        case 'color':
+            Color();
+            break;
+        
+        case 'verd':
+            Verd();
+            break;
+    }
+
+}
+
+function ferNegatiu() {
+    
+    var canvas = document.getElementById('pfuncio');
+    var context = canvas.getContext('2d');
+    
+    var imageData = context.getImageData(0, 0, canvas.width,canvas.height);
+    var pixels = imageData.data;
+    for (var i = 0; i < pixels.length; i += 4) {
+        pixels[i] = 255 - pixels[i]; // red
+        pixels[i + 1] = 255 - pixels[i + 1]; // green
+        pixels[i + 2] = 255 - pixels[i + 2]; // blue
+        // i+3 es alpha (opacitat)
+
+    }
+    // modifiquem original
+    context.putImageData(imageData, 0, 0);
+}
+
+function BlancNegre(){
+    var canvas = document.getElementById('pfuncio');
+    var context = canvas.getContext('2d');
+    
+    var imageData = context.getImageData(0, 0, canvas.width,canvas.height);
+    var pixels = imageData.data;
+
+    for (var i = 0, n = pixels.length; i < n; i += 4) {
+        var grayscale = pixels[i] * .3 + pixels[i+1] * .59 + pixels[i+2] * .11;
+
+        pixels[i] = grayscale;
+        pixels[i+1] = grayscale;
+        pixels[i+2] = grayscale;
+    }
+
+    context.putImageData(imageData, 0, 0);
+}
+
+function Verd(){
+    var canvas = document.getElementById('pfuncio');
+    var context = canvas.getContext('2d');
+    
+    var imageData = context.getImageData(0, 0, canvas.width,canvas.height);
+    var pixels = imageData.data;
+
+    for (var i = 0, n = pixels.length; i < n; i += 4) {
+        var pintar_verd = (pixels[i] + pixels[i+1] + pixels[i+2])/3
+
+        console.log(pintar_verd);
+
+        pixels[i] = 0;
+        pixels[i+1] = pintar_verd;
+        pixels[i+2] = 0;
+    }
+    context.putImageData(imageData, 0, 0);
+}
+
+function Color(){
+    var canvas = document.getElementById('pfuncio');
+    var context = canvas.getContext('2d');
+    
+    var imageData = context.getImageData(0, 0, canvas.width,canvas.height);
+    var pixels = imageData.data;
+
+    for (var i = 0, n = pixels.length; i < n; i += 4) {
+        
+        pixels[i] = pixels[i];
+        pixels[i+1] = pixels[i+1];
+        pixels[i+2] = pixels[i+2];
+    }
+    context.putImageData(imageData, 0, 0);
 }
