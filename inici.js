@@ -1,4 +1,6 @@
 window.onload = function(){
+
+    //Esperen canvis als botons
     document.getElementById('play').addEventListener('click',inici,true);
     document.getElementById('pause').addEventListener('click',pausar,true);
     document.getElementById('back').addEventListener('click',back,true);
@@ -6,28 +8,24 @@ window.onload = function(){
 
     var video = document.getElementById("video");
 
-
+    //Play video
     function inici(){
         video.play();
-        //temps.innerHTML = video.duration;
     }
 
+    //Pause video
     function pausar(){
         video.pause();
     }
 
+    //Tirar enrrere 3s
     function back(){
         video.currentTime -= 3;
     }
 
+    //Tirar endavant 3s
     function forward(){
         video.currentTime += 3;
     }
 
-    //
-    //setInterval(mostraTemps, 500);
-    //
-    //function mostraTemps(){
-    //  temps.innerHTML=video.currentTime;
-    //}
 }

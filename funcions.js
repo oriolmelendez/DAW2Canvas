@@ -7,6 +7,7 @@ window.onload = function eixos() {
     inici(canvas);
 }
 
+//Calcula els punts de la funció
 function calcular() {
     let operacio = document.getElementById("funcio").value.toString();
     
@@ -32,7 +33,7 @@ function calcular() {
     return totalValues;
 }
 
-//Pin
+//Pintar la funció
 function pintarf(){
 
     var canvas = document.getElementById('pfuncio');
@@ -103,6 +104,7 @@ function tipus(tipusL){
 
 }
 
+//Pinta la funció discontinua
 function funcioDiscontinua(){
 
     var canvas = document.getElementById('pfuncio');
@@ -117,6 +119,7 @@ function funcioDiscontinua(){
     
 }
 
+//Pinta la funció continua
 function funcioContinua(){
 
     var canvas = document.getElementById('pfuncio');
@@ -130,6 +133,7 @@ function funcioContinua(){
     pintarf();
 }
 
+//Pinta la funció pintada ralla punt
 function funcioRallaPunt(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
@@ -142,6 +146,7 @@ function funcioRallaPunt(){
     pintarf();
 }
 
+//Pinta la funció puntuada
 function funcioPunts(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
@@ -242,7 +247,6 @@ function fons(img){
 }
 
 // ####### Modificacions estètiques sobre l'imatge #######
-
 function bitmap(modificacio){
 
     switch(modificacio){
@@ -266,6 +270,7 @@ function bitmap(modificacio){
 
 }
 
+//Convertir a negatiu l'imatge de fons
 function ferNegatiu() {
     
     var canvas = document.getElementById('pfuncio');
@@ -284,6 +289,7 @@ function ferNegatiu() {
     context.putImageData(imageData, 0, 0);
 }
 
+//Convertir a blanc i negre
 function BlancNegre(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
@@ -302,6 +308,7 @@ function BlancNegre(){
     context.putImageData(imageData, 0, 0);
 }
 
+//Convertir a Verd
 function Verd(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
@@ -321,6 +328,7 @@ function Verd(){
     context.putImageData(imageData, 0, 0);
 }
 
+//Convertir a color rgb el fons
 function Color(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
