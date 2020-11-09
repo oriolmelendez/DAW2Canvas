@@ -1,11 +1,20 @@
-#Canvas{
-    margin-top: -100px;
+/* Fonts */
+@import url('https://fonts.google.com/specimen/Bebas+Neue#standard-styles');
+
+body{
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: 15px;
+}
+
+button,select,input{
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: 12px;
 }
 
 #menu{
-    width: 220px;
+    width: 400px;
     position: absolute;
-    margin-left: 66%;
+    margin-left: 55%;
 }
 
 #funcio{
@@ -15,7 +24,7 @@
 
 #inputFunc{
     margin-left: 620px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 #Z{
@@ -32,9 +41,8 @@
     position: absolute;
 }
 
-#exemple{
+#pfuncio{
     z-index: 1;
-    
 }
 
 select{
@@ -50,7 +58,7 @@ select{
 }
 
 #Gruix{
-    margin-top: 30%;
+    margin-top: 20%;
     margin-left: 81%;
     width: 160px;
 }
@@ -60,13 +68,24 @@ select{
     width: 120px;
 }
 
+#Fons{
+    margin-left: 81%;
+    margin-top: 18%;
+    width: 160px;
+}
+
 #esborrar{
-    margin-top: 45%;
+    margin-top: 30%;
     margin-left: 81%;
     width: 100px;
     height: 40px;
 }
 
+#efecteF{
+    margin-left: 81%;
+    margin-top: 18%;
+    width: 160px;
+}
 
 #menu2{
     width: 300px;
@@ -76,6 +95,7 @@ select{
 #desar{
     width: 180px;
     height: 40px;
-    margin-top: 35%;
-    margin-left: 65%;
+    margin-left: 43%;
+    margin-top: -330px;
 }
+

@@ -40,7 +40,7 @@ function pintarf(){
     var context = canvas.getContext('2d');
 
     context.beginPath();
-    let punts = calcular();
+    var punts = calcular();
     console.log(punts);
     
     context.moveTo(punts[0]*50 + canvas.width/2, canvas.height/2 - punts[1]*50);
@@ -52,6 +52,28 @@ function pintarf(){
 
     context.strokeStyle="black";
     context.stroke();
+    bores(punts);
+}
+
+//Pintar bores
+function bores(p){
+
+    var canvas = document.getElementById('pfuncio');
+    var context = canvas.getContext('2d');
+    punts = p;
+    let n = p.length;
+    
+    context.lineTo(punts[n-2]*50 + canvas.width/2,(canvas.height/2 - punts[n-1]*50)-5);
+    
+    for(let i = n-3; i > -1; i-=2){
+        
+        context.lineTo(punts[i-1]*50 + canvas.width/2, (canvas.height/2 - punts[i]*50)-5); 
+    }
+    context.closePath();
+    context.fillStyle="red";
+    context.fill();
+    context.stroke();
+    
 }
 
 //####### Modificacions estetiques funcio #######
@@ -195,7 +217,7 @@ function inici(canvas){
 
     this.canvas = canvas;
     var context = canvas.getContext('2d');
-    context.setLineDash([]);
+    //context.setLineDash([]);
 
     //Posicio(x),Posicio(y),(ample),(alt)
     context.beginPath();
@@ -262,10 +284,6 @@ function bitmap(modificacio){
         case 'color':
             Color();
             break;
-        
-        case 'verd':
-            Verd();
-            break;
     }
 
 }
@@ -305,26 +323,6 @@ function BlancNegre(){
         pixels[i+2] = grayscale;
     }
 
-    context.putImageData(imageData, 0, 0);
-}
-
-//Convertir a Verd
-function Verd(){
-    var canvas = document.getElementById('pfuncio');
-    var context = canvas.getContext('2d');
-    
-    var imageData = context.getImageData(0, 0, canvas.width,canvas.height);
-    var pixels = imageData.data;
-
-    for (var i = 0, n = pixels.length; i < n; i += 4) {
-        var pintar_verd = (pixels[i] + pixels[i+1] + pixels[i+2])/3
-
-        console.log(pintar_verd);
-
-        pixels[i] = 0;
-        pixels[i+1] = pintar_verd;
-        pixels[i+2] = 0;
-    }
     context.putImageData(imageData, 0, 0);
 }
 
