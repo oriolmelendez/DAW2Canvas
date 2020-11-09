@@ -1,3 +1,6 @@
+var canvasSaved;
+var lastGruix = 3;
+
 window.onload = function eixos() {
 
     var canvas = document.getElementById('eixos');
@@ -79,22 +82,40 @@ function bores(p){
 //####### Modificacions estetiques funcio #######
 
 //Canvi color
-function CanviColor(color){
+function CanviColor(color) {
 
-    var canvas = document.getElementById('pfuncio');
-    var context = canvas.getContext('2d');
+    let canvas = document.getElementById('pfuncio');
+    let context = canvas.getContext('2d');
 
-    context.strokeStyle=color;
+
+    let isChecked = document.getElementById('degradat').checked;
+    console.log(isChecked);
+
+    if (isChecked) {
+        var gradient=context.createLinearGradient(100,0,canvas.width-100,0);
+        gradient.addColorStop(0,'black');
+        gradient.addColorStop(1,color);
+        
+        context.strokeStyle = gradient;
+
+    } else {
+        context.strokeStyle = color;
+    }
     context.stroke();
 }
 
 //Canvi gruix
-function gruix(vgruix){
+function gruix(vgruix) {
+    let canvas = document.getElementById('pfuncio');
+    let context = canvas.getContext('2d');
+    
+    
+    context.putImageData(canvasSaved, 0, 0);
+    
 
-    var canvas = document.getElementById('pfuncio');
-    var context = canvas.getContext('2d');
+    lastGruix = vgruix;
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    //context.clearRect(0, 0, canvas.width, canvas.height);
     context.lineWidth = vgruix;
     console.log(vgruix);
     context.stroke();
@@ -132,11 +153,8 @@ function funcioDiscontinua(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
     context.setLineDash([4, 14]);
-    context.beginPath();
-    let img = document.getElementById("fonsC").value;
-    fons(img);
+    context.beginPath(); 
     pintarf();
     
 }
@@ -146,12 +164,9 @@ function funcioContinua(){
 
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
-    let img = document.getElementById("fonsC").value;
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
     context.setLineDash([]);
     context.beginPath();
-    fons(img);
     pintarf();
 }
 
@@ -159,12 +174,9 @@ function funcioContinua(){
 function funcioRallaPunt(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
-    let img = document.getElementById("fonsC").value;
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    
     context.setLineDash([4, 14, 18]);
     context.beginPath();
-    fons(img);
     pintarf();
 }
 
@@ -172,12 +184,9 @@ function funcioRallaPunt(){
 function funcioPunts(){
     var canvas = document.getElementById('pfuncio');
     var context = canvas.getContext('2d');
-    let img = document.getElementById("fonsC").value;
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    
     context.setLineDash([2,5]);
     context.beginPath();
-    fons(img);
     pintarf();
 
 }
@@ -186,12 +195,16 @@ function funcioPunts(){
 function neteja(){
     var canvas = document.getElementById('pfuncio');
     var canvasE = document.getElementById('eixos');
+    var canvasF = document.getElementById('fons');
+    
     
     var context = canvas.getContext('2d');
     var contextE = canvasE.getContext('2d');
+    var contextF = canvasF.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     contextE.clearRect(0, 0, canvas.width, canvas.height);
+    contextF.clearRect(0, 0, canvas.width, canvas.height);
 
     inici(canvasE);
 }
@@ -217,7 +230,6 @@ function inici(canvas){
 
     this.canvas = canvas;
     var context = canvas.getContext('2d');
-    //context.setLineDash([]);
 
     //Posicio(x),Posicio(y),(ample),(alt)
     context.beginPath();
@@ -232,7 +244,7 @@ function inici(canvas){
 
 //Posar imatge de fons
 function fons(img){
-    var canvas = document.getElementById('pfuncio');
+    var canvas = document.getElementById('fons');
     var context = canvas.getContext('2d');
 
     let imatge = new Image();
@@ -261,10 +273,8 @@ function fons(img){
     
     imatge.onload = function(){
         context.drawImage(imatge,0,0);
-        pintarf();
-        inici(canvas);
     }
-
+    
 
 }
 
@@ -291,7 +301,7 @@ function bitmap(modificacio){
 //Convertir a negatiu l'imatge de fons
 function ferNegatiu() {
     
-    var canvas = document.getElementById('pfuncio');
+    var canvas = document.getElementById('fons');
     var context = canvas.getContext('2d');
     
     var imageData = context.getImageData(0, 0, canvas.width,canvas.height);
@@ -309,7 +319,7 @@ function ferNegatiu() {
 
 //Convertir a blanc i negre
 function BlancNegre(){
-    var canvas = document.getElementById('pfuncio');
+    var canvas = document.getElementById('fons');
     var context = canvas.getContext('2d');
     
     var imageData = context.getImageData(0, 0, canvas.width,canvas.height);
@@ -328,17 +338,16 @@ function BlancNegre(){
 
 //Convertir a color rgb el fons
 function Color(){
-    var canvas = document.getElementById('pfuncio');
+    var canvas = document.getElementById('fons');
     var context = canvas.getContext('2d');
     
-    var imageData = context.getImageData(0, 0, canvas.width,canvas.height);
-    var pixels = imageData.data;
+    img = document.getElementById("fonsC").value;
+    fons(img);
+    context.drawImage(imatge,0,0);
+}
 
-    for (var i = 0, n = pixels.length; i < n; i += 4) {
-        
-        pixels[i] = pixels[i];
-        pixels[i+1] = pixels[i+1];
-        pixels[i+2] = pixels[i+2];
-    }
-    context.putImageData(imageData, 0, 0);
+//Actualitzar el text
+function actualitzaText(){
+    let text = document.getElementById("funcio").value;
+    document.getElementById("operacioLabel").innerText = text;
 }
