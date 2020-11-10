@@ -1,5 +1,12 @@
 /* Fonts */
 @import url('https://fonts.google.com/specimen/Bebas+Neue#standard-styles');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text&display=swap');
+
+#operacioLabel{
+    font-family: 'Big Shoulders Stencil Text', cursive;
+    font-size: 22px;
+    color: #f44336;
+}
 
 body{
     font-family: 'Bebas Neue',sans-serif;

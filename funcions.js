@@ -1,5 +1,4 @@
 var canvasSaved;
-var lastGruix = 3;
 
 window.onload = function eixos() {
 
@@ -8,6 +7,7 @@ window.onload = function eixos() {
     document.getElementById("desar").addEventListener('click',desar,true);
 
     inici(canvas);
+    actualitzaText();
 }
 
 //Calcula els punts de la funció
@@ -56,6 +56,7 @@ function pintarf(){
     context.strokeStyle="black";
     context.stroke();
     bores(punts);
+    canvasSaved = context.getImageData(0,0, canvas.width, canvas.height);
 }
 
 //Pintar bores
@@ -111,9 +112,6 @@ function gruix(vgruix) {
     
     
     context.putImageData(canvasSaved, 0, 0);
-    
-
-    lastGruix = vgruix;
 
     //context.clearRect(0, 0, canvas.width, canvas.height);
     context.lineWidth = vgruix;
@@ -349,5 +347,5 @@ function Color(){
 //Actualitzar el text
 function actualitzaText(){
     let text = document.getElementById("funcio").value;
-    document.getElementById("operacioLabel").innerText = text;
+    document.getElementById("operacioLabel").innerHTML = text.italics();
 }

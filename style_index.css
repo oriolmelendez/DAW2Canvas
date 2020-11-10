@@ -6,6 +6,12 @@ h1{
     font-size: 30px;
 }
 
+p{
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: 13px;
+    margin-left: 27%;
+}
+
 button{
     font-family: 'Bebas Neue',sans-serif;
     font-size: 14px;
